@@ -1,23 +1,42 @@
+import java.util.Scanner;
+
 /**
  * StackMain21
  */
 public class StackMain21 {
 
     public static void main(String[] args) {
-        Stack21 stk = new Stack21(5);
-        stk.push(15);
-        stk.push(27);
-        stk.push(13);
-        stk.print();
+        Stack21 st = new Stack21(8);
+        Scanner sc = new Scanner(System.in);
 
-        stk.push(11);
-        stk.push(34);
-        stk.pop();
-        stk.peek();
-        stk.print();
+        char choose;
+        do {
+            System.out.print("Title : ");
+            String title = sc.nextLine();
 
-        stk.push(18);
-        stk.push(40);
-        stk.print();
+            System.out.print("Author Name : ");
+            String name = sc.nextLine();
+
+            System.out.print("Published year : ");
+            int year = sc.nextInt();
+
+            System.out.print("Pages Amount: ");
+            int Pages = sc.nextInt();
+
+            System.out.print("Price: ");
+            int price = sc.nextInt();
+
+            Book21 bk = new Book21(title, name, year, Pages, price);
+            System.out.print("Do you want to add new data to stack (y/n)? ");
+            choose = sc.next().charAt(0);
+            sc.nextLine();
+            st.push(bk);
+
+        } while (choose == 'y');
+
+        st.print();
+        st.pop();
+        st.peek();
+        st.print();;
     }
 }

@@ -1,15 +1,20 @@
 /**
- * Stack21
+ * Book21
  */
-public class Stack21 {
+public class Book21 {
 
-    int size, top;
-    Book21 data[];
+    String title, authorName;
+    int publishedYear, pagesAmount, price;
+    int size;
+    int top;
+    int data[];
 
-    public Stack21(int size) {
-        this.size = size;
-        data = new Book21[size];
-        top = -1;
+    public Book21(String tt, String nm, int yr, int pam, int pr) {
+        this.title = tt;
+        this.authorName = nm;
+        this.publishedYear = yr;
+        this.pagesAmount = pam;
+        this.price = pr;
     }
 
     public boolean IsEmpty() {
@@ -28,7 +33,7 @@ public class Stack21 {
         }
     }
 
-    public void push(Book21 dt) {
+    public void push(int dt) {
         if (!IsFull()) {
             top++;
             data[top] = dt;
@@ -39,11 +44,9 @@ public class Stack21 {
 
     public void pop() {
         if (!IsEmpty()) {
-            Book21 x = data[top];
+            int x = data[top];
             top--;
-            System.out.println("Remove data : " + x.title + " " +
-                    x.authorName + " " + x.publishedYear + " " +
-                    x.pagesAmount + " " + x.price);
+            System.out.println("Remove data : " + x);
         } else {
             System.out.println("Stack is empty");
         }
@@ -56,9 +59,7 @@ public class Stack21 {
     public void print() {
         System.out.println("Stack content: ");
         for (int i = top; i >- 0; i--) {
-            System.out.println(data[i].title + " " + 
-                    data[i].authorName + " " + data[i].publishedYear + 
-                    data[i].pagesAmount + " " + data[i].price);
+            System.out.println(data[i] + " ");
         }
         System.out.println("");
     }
