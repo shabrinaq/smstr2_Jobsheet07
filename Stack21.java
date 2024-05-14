@@ -1,76 +1,65 @@
-/**
- * Stack21
- */
-public class Stack21 {
+import java.util.EmptyStackException;
 
-    int size, top;
-    Book21 data[];
+public class Stack21<T> {
+    private int size;
+    private int top;
+    private T[] data;
 
     public Stack21(int size) {
         this.size = size;
-        data = new Book21[size];
-        top = -1;
+        this.data = (T[]) new Object[size];
+        this.top = -1;
     }
 
-    public boolean IsEmpty() {
-        if (top == -1) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isEmpty() {
+        return top == -1;
     }
 
-    public boolean IsFull() {
-        if (top == size - 1) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isFull() {
+        return top == size - 1;
     }
 
-    public void push(Book21 dt) {
-        if (!IsFull()) {
+    public void push(T item) {
+        if (!isFull()) {
             top++;
-            data[top] = dt;
+            data[top] = item;
         } else {
             System.out.println("Stack is full");
         }
     }
 
-    public void pop() {
-        if (!IsEmpty()) {
-            Book21 x = data[top];
+    public T pop() {
+        if (!isEmpty()) {
+            T item = data[top];
             top--;
-            System.out.println("Remove data : " + x.title + " " +
-                    x.authorName + " " + x.publishedYear + " " +
-                    x.pagesAmount + " " + x.price);
+            return item;
         } else {
-            System.out.println("Stack is empty");
+            throw new EmptyStackException();
         }
     }
 
-    public void peek() {
-        System.out.println("Top element : " + data[top]);
+    public T peek() {
+        if (!isEmpty()) {
+            return data[top];
+        } else {
+            throw new EmptyStackException();
+        }
     }
 
     public void print() {
         System.out.println("Stack content: ");
-        for (int i = top; i >- 0; i--) {
-            System.out.println(data[i].title + " " + 
-                    data[i].authorName + " " + data[i].publishedYear + 
-                    data[i].pagesAmount + " " + data[i].price);
+        for (int i = top; i >= 0; i--) {
+            System.out.println(data[i]);
         }
-        System.out.println("");
+        System.out.println();
     }
 
     public void clear() {
-        if (!IsEmpty()) {
-            for (int i = top; i >= 0; i--) {
-                top--;
-            }
+        if (!isEmpty()) {
+            top = -1;
             System.out.println("Stack is now empty");
         } else {
-            System.out.println("Failed ! Stack is still empty ");
+            System.out.println("Failed ! Stack is already empty ");
         }
     }
 }
